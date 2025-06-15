@@ -1,3 +1,21 @@
+# Maven specific
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+documentation
+
+# IDE - IntelliJ IDEA #
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
 # Compiled class file
 *.class
 
@@ -22,3 +40,16 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
+.idea
+
+.vscode/**
+/src/main/resources/application.yml
+/application.properties
+/application.yaml
+/application.yml
+/application*.properties
+/application*.yaml
+/application*.yml
+*deleteme*

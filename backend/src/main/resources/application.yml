@@ -1,0 +1,23 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: techtest
+  cloud:
+    openfeign:
+      client:
+        config:
+          weatherMapClient:
+            url: ${hsbc.techtest.weather.map.client.url}
+
+logging.level.com.hsbc.techtest.feign: DEBUG
+
+hsbc:
+  techtest:
+    weather:
+      map:
+        client:
+          url: "https://samples.openweathermap.org/"
+

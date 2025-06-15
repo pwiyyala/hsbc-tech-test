@@ -1,0 +1,37 @@
+name: CICD-PR
+
+on:
+  pull_request: { branches: [main] }
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  
+env:
+  java-version: '17'
+  build: true
+  build-command: 'mvn clean verify -U -f backend/pom.xml'
+  
+  
+jobs:
+  build-and-unit-testing:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Java Setup
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'        
+          cache: 'maven'      
+
+      - name: Unit Test
+        shell: bash 
+        run: mvn clean verify -U -f backend/pom.xml
+        working-directory: ./
