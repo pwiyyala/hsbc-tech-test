@@ -18,17 +18,18 @@ jobs:
   build-and-unit-testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Java Setup
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'        
-          cache: 'maven'
 
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: '0'
+
+      - name: Java Setup
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'        
+          cache: 'maven'      
 
       - name: Unit Test
         shell: bash 
