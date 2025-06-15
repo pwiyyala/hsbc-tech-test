@@ -67,9 +67,6 @@ public class CitySearchService {
     log.info("Returning {} cities starting with {}", cities.size(), searchPrefix);
     log.debug("For search prefix {}. Cities found: {}", searchPrefix, cities);
 
-    if(cities.isEmpty()) {
-      throw new ResourceNotFoundException("No cities found starting with " + searchPrefix);
-    }
     return cities;
   }
 }

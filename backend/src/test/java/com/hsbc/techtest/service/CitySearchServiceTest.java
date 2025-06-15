@@ -84,13 +84,11 @@ class CitySearchServiceTest {
         .willReturn(Optional.of(objectMapper.writeValueAsString(weatherMap)));
 
     // Act
-    ResourceNotFoundException exception =
-            Assertions.assertThrows(
-                    ResourceNotFoundException.class, () -> citySearchService.getCityName(NEW_PREFIX));
+    List<String> result = citySearchService.getCityName(NEW_PREFIX);
 
     // Assert
-    assertThat(exception).isNotNull();
-    assertThat(exception.getMessage()).isEqualTo("No cities found starting with New");
+    assertThat(result).isNotNull();
+    assertThat(result.isEmpty()).isTrue();
   }
 
   /**
@@ -128,12 +126,10 @@ class CitySearchServiceTest {
         .willReturn(Optional.of(objectMapper.writeValueAsString(weatherMap)));
 
     // Act
-    ResourceNotFoundException exception =
-            Assertions.assertThrows(
-                    ResourceNotFoundException.class, () -> citySearchService.getCityName(LO_PREFIX));
+    List<String> result = citySearchService.getCityName(LO_PREFIX);
 
     // Assert
-    assertThat(exception).isNotNull();
-    assertThat(exception.getMessage()).isEqualTo("No cities found starting with Lo");
+    assertThat(result).isNotNull();
+    assertThat(result.isEmpty()).isTrue();
   }
 }

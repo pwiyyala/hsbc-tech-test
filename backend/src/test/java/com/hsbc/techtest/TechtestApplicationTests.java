@@ -115,17 +115,14 @@ class TechtestApplicationTests {
     // given
 
     // when
-    ResponseEntity<ErrorResponse> responseEntity =
-        restTemplate.getForEntity(URL + "X", ErrorResponse.class);
+    ResponseEntity<List> responseEntity =
+        restTemplate.getForEntity(URL + "X", List.class);
 
     // then
     assertThat(responseEntity).isNotNull();
-    assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(responseEntity.getBody()).isNotNull();
-    ErrorResponse errorResponse = responseEntity.getBody();
-    assertThat(errorResponse).isNotNull();
-    assertThat(errorResponse.status()).isEqualTo(HttpStatus.NOT_FOUND);
-    assertThat(errorResponse.message()).isEqualTo("No cities found starting with X");
+    assertThat(responseEntity.getBody().size()).isEqualTo(0);
   }
 
   /**
