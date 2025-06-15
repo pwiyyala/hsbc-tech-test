@@ -20,4 +20,3 @@ hsbc:
       map:
         client:
           url: "https://samples.openweathermap.org/"
-

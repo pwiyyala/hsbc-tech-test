@@ -156,7 +156,21 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<image>
+						<name>hsbc/techtest-backend:${project.version}</name>
+					</image>
+					<environment>
+						<SERVER_SSL_TRUST-STORE>classpath:cacerts</SERVER_SSL_TRUST-STORE>
+						<SERVER_SSL_TRUST-STORE-PASSWORD>changeit</SERVER_SSL_TRUST-STORE-PASSWORD>
+					</environment>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

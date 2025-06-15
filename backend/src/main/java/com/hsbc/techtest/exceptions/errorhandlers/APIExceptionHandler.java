@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-/**
- * The type Api exception handler.
- */
+/** The type Api exception handler. */
 @ControllerAdvice
 @Order(1)
 @Slf4j
@@ -35,7 +33,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
    * @param e the e
    * @return the response entity
    */
-@ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(value = InvalidRequestException.class)
   public ResponseEntity<ErrorResponse> handleInvalidRequest(InvalidRequestException e) {
     log.error("Invalid request with validation errors: {}", e.getMessage(), e);
@@ -70,7 +68,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
    * @param ex the ex
    * @return the response entity
    */
-@ExceptionHandler(ResourceNotFoundException.class)
+  @ExceptionHandler(ResourceNotFoundException.class)
   public ResponseEntity<ErrorResponse> handleRecordNotFoundException(ResourceNotFoundException ex) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new ErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), List.of()));
@@ -82,7 +80,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
    * @param ex the ex
    * @return the response entity
    */
-@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   @ExceptionHandler(value = {Exception.class})
   public ResponseEntity<ErrorResponse> handleGlobalErrors(Exception ex) {
     log.error(
@@ -94,6 +92,6 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatus.INTERNAL_SERVER_ERROR,
             "Something went wrong!!",
             List.of(ex.getClass().getTypeName()));
-    return ResponseEntity.of(Optional.of(error));
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
   }
 }
